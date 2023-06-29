@@ -69,6 +69,7 @@
         box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
     }
 
+    /* Edit arrow styles by class */
     .arrow-class-1 {
         fill: blue;
     }
@@ -96,21 +97,30 @@
         stroke-dasharray: 4;
     }
 
+    /* Edit width of arrow line and text */
+    .svg-line {
+        stroke-width: 1.5;
+    }
+
+    .svg-text {
+        stroke-width: 0.25;
+    }
+
 </style>
 
 <h1>jQuery Arrows</h1>
 
 <div id="node-1" class="node" style="top:20%; left:20%;">
-    Node 1
+    <h3>Node 1</h3>
 </div>
 <div id="node-2" class="node" style="top:20%; left:60%;">
-    Node 2
+    <h3>Node 2</h3>
 </div>
-<div id="node-3" class="node" style="top:60%; left:20%;">
-    Node 3
+<div id="node-3" class="node" style="top:60%; left:60%;">
+    <h3>Node 3</h3>
 </div>
-<div id="node-4" class="node" style="top:60%; left:60%;">
-    Node 4
+<div id="node-4" class="node" style="top:60%; left:20%;">
+    <h3>Node 4</h3>
 </div>
 
 <div id="svg-arrows"></div>
