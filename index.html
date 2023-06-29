@@ -2,9 +2,12 @@
 <meta charset="utf-8" />
 <title>jQuery Arrows</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/ui/1.10.1/query-ui.js"></script>
 <script src="jquery.arrows.js"></script>
 <script>
     $(document).ready(function () {
+        $( ".node" ).draggable(); // Make node boxes draggable with jQuery UI
+
         $().arrows({
             within: '#svg-arrows', // Optional (container that will hold the created arrows - set to "body" if not specified)
             id: 'arrow-1-2', // Optional (for unique element identification - set to "arrow-n" if not specified) 
@@ -12,6 +15,15 @@
             name: 'i am arrow-1-2', // Optional (no text is shown otherwise)
             from: '#node-1', // MANDATORY - Any jQuery selector (allowing to choose multiple source elements at once).
             to: '#node-2' // MANDATORY - Any jQuery selector (allowing to choose multiple destination elements at once).
+        });
+
+        $().arrows({
+            within: '#svg-arrows', 
+            id: 'arrow-2-3',
+            class: 'arrow-class-2',
+            name: 'i am arrow-2-3',
+            from: '#node-2', 
+            to: '#node-3'
         });
 
         $().arrows({
@@ -34,11 +46,11 @@
 
         $().arrows({
             within: '#svg-arrows', 
-            id: 'arrow-1-4',
+            id: 'arrow-1-3',
             class: 'arrow-class-1',
-            name: 'i am arrow-1-4',
+            name: 'i am arrow-1-3',
             from: '#node-1', 
-            to: '#node-4'
+            to: '#node-3'
         });
 
         $().arrows({
@@ -108,7 +120,8 @@
 
 </style>
 
-<h1>jQuery Arrows</h1>
+<h2>jQuery Arrows Example</h2>
+<h4>Nodes can be moved around to play with the arrows update by clicking on them and moving the mouse.</h4>
 
 <div id="node-1" class="node" style="top:20%; left:20%;">
     <h3>Node 1</h3>
