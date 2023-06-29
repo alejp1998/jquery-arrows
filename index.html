@@ -5,38 +5,51 @@
 <script src="jquery.arrows.js"></script>
 <script>
     $(document).ready(function () {
-        $("h1 *").arrows({ to: "div:first", class: "first" });
-        $("div.styles .anchor").arrows({
-            to: "div.styles li:nth-child(1)",
-            within: ".styles",
-            tag: "inner",
+        $().arrows({
+            within: '#svg-arrows', // Optional (container that will hold the created arrows - set to "body" if not specified)
+            id: 'arrow-1-2', // Optional (for unique element identification - set to "arrow-n" if not specified) 
+            class: 'arrow-class-1', // Optional (for arrow class identification and styling)
+            name: 'i am arrow-1-2', // Optional (no text is shown otherwise)
+            from: '#node-1', // MANDATORY - Any jQuery selector (allowing to choose multiple source elements at once).
+            to: '#node-2' // MANDATORY - Any jQuery selector (allowing to choose multiple destination elements at once).
         });
-        $("div.styles .anchor").arrows({
-            to: "div.styles li:nth-child(2)",
-            within: ".styles",
-            tag: "inner",
+
+        $().arrows({
+            within: '#svg-arrows', 
+            id: 'arrow-3-4',
+            class: 'arrow-class-3',
+            name: 'i am arrow-3-4',
+            from: '#node-3', 
+            to: '#node-4'
         });
-        $("div.styles .anchor").arrows({
-            to: "div.styles li:nth-child(3)",
-            within: ".styles",
-            tag: "inner",
+
+        $().arrows({
+            within: '#svg-arrows', 
+            id: 'arrow-4-1',
+            class: 'arrow-class-4',
+            name: 'i am arrow-4-1',
+            from: '#node-4', 
+            to: '#node-1'
         });
-        $("div.styles .anchor").arrows({
-            to: "div.styles li:nth-child(4)",
-            within: ".styles",
-            tag: "inner",
+
+        $().arrows({
+            within: '#svg-arrows', 
+            id: 'arrow-1-4',
+            class: 'arrow-class-1',
+            name: 'i am arrow-1-4',
+            from: '#node-1', 
+            to: '#node-4'
         });
-        $("div.styles .anchor").arrows({
-            to: "div.styles li:nth-child(5)",
-            within: ".styles",
-            tag: "inner",
+
+        $().arrows({
+            within: '#svg-arrows', 
+            id: 'arrow-4-2',
+            class: 'arrow-class-2',
+            name: 'i am arrow-4-2',
+            from: '#node-4', 
+            to: '#node-2'
         });
-        $("div.positioning .anchor").arrows({
-            to: "div.positioning li",
-            tag: "inner"
-        });
-        $("p, div").arrows();
-        $("arrow:odd").addClass("odd");
+
         var arrows = $("arrow, inner");
         setInterval(function () {
             arrows.arrows("update");
@@ -44,130 +57,62 @@
     });
 </script>
 <style>
-    html {
-        background: #f4f4f4;
-    }
-
-    * {
-        font-family: sans-serif;
-    }
-
-    p,
-    div {
-        background: rgb(255, 255, 255);
-        background: rgba(255, 255, 255, 0.7);
-        float: left;
-        min-width: 4em;
-        min-height: 3em;
-        max-width: 29ex;
-        margin: 3em;
-        padding: 1em;
-        border: 1px solid rgb(200, 200, 200);
-        border: 1px solid rgba(0, 0, 0, 0.2);
+    .node {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 0.1em;
+        padding: 0.3em;
+        border: 2px solid rgba(0, 38, 255, 0.8);
         border-radius: 16px;
         box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
     }
 
-    li,
-    pre {
-        border-radius: 6px;
-        color: white;
-        background: #668;
-        display: block;
-        margin: 0.3em 0 0 0;
-        padding: 0.3em 1em;
+    .arrow-class-1 {
+        fill: blue;
+    }
+    .arrow-class-1 .svg-line {
+        stroke: blue;
+        stroke-dasharray: 4;
+    }
+    .arrow-class-2 {
+        fill: purple;
+    }
+    .arrow-class-2 .svg-line {
+        stroke: purple;
+    }
+    .arrow-class-3 {
+        fill: greenyellow;
+    }
+    .arrow-class-3 .svg-line {
+        stroke: greenyellow;
+    }
+    .arrow-class-4 {
+        fill: red;
+    }
+    .arrow-class-4 .svg-line {
+        stroke: red;
+        stroke-dasharray: 4;
     }
 
-    pre {
-        font: 0.9em monospace;
-        font-weight: bold;
-        background: #ddd;
-        color: #555;
-    }
-
-    br {
-        clear: both;
-    }
-
-    arrow {
-        z-index: -1;
-        border: 3px solid;
-        border-radius: 7em;
-        color: rgb(128, 128, 128);
-        color: rgba(0, 0, 0, 0.5);
-    }
-
-    arrow.odd {
-        border-radius: 100%;
-    }
-
-    arrow.first {
-        color: black;
-        border: 5px dotted;
-    }
-
-    inner {
-        border: 4px solid;
-        border-radius: 16px;
-        color: #668;
-    }
-
-    .anchor {
-        display: block;
-        width: 0;
-        margin-top: 0.1em;
-        margin-left: 1em;
-    }
-
-    .more {
-        float: right;
-        font-weight: bold;
-    }
-
-    a {
-        color: #d62 !important;
-    }
 </style>
-<h1><span>jQuery Arrows</span></h1>
-<div>
-    Adds lines between page elements using CSS borders.
-    <pre>$('div.box').arrows();</pre>
+
+<h1>jQuery Arrows</h1>
+
+<div id="node-1" class="node" style="top:20%; left:20%;">
+    Node 1
 </div>
-<div class="styles">
-    Arrows are separate elements that can be styled individually. Examples:
-    <span class="anchor"></span>
-    <ul>
-        <li>Z-index</li>
-        <li>Color</li>
-        <li>Width</li>
-        <li>Radius</li>
-        <li>Style</li>
-    </ul>
-    <pre>
-$('#start').arrows({
-  to: '#end',
-  'class': 'related'
-});</pre>
+<div id="node-2" class="node" style="top:20%; left:60%;">
+    Node 2
 </div>
-<br />
-<div class="positioning">
-    Dynamic repositioning is optional. Update strategies are not constrained by
-    the plugin. Ideas: <span class="anchor"></span>
-    <ul>
-        <li>Full/partial/round robin</li>
-        <li>On interval/resize/drag event</li>
-    </ul>
-    <pre>
-var c = $('arrow');
-setInterval(function() {
-  c.arrow('update');
-}, 500);</pre>
+<div id="node-3" class="node" style="top:60%; left:20%;">
+    Node 3
 </div>
-<div class="more">
-    Learn more<br />
-    <br />
-    <a href="https://github.com/alejp1998/jquery-arrows/wiki">Wiki</a><br />
-    <a href="https://github.com/alejp1998/jquery-arrows">Github</a><br />
-    <a href="https://opensource.org/licenses/MIT">MIT license</a>
+<div id="node-4" class="node" style="top:60%; left:60%;">
+    Node 4
 </div>
+
+<div id="#svg-arrows"></div>
+
 <br />
