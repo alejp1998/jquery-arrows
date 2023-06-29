@@ -4,10 +4,14 @@
    * This plugin provides functionality to create and manage arrow connections between HTML elements.
    */
 
+  
+  // Unique arrow number (in case id is not specified)
+  var n = 0;
+  
   /**
    * arrows(options)
    * Initializes the arrows plugin on the selected elements.
-   * @param {string|object} options - Options for the arrows plugin.
+   * @param {Object} options - Options for the arrows plugin.
    * @returns {jQuery} The jQuery object.
    */
   $.fn.arrows = function (options) {
@@ -20,10 +24,11 @@
       options = $.extend(
         true,
         {
-          class: "arrow",
           from: this,
           to: this,
-          within: ":root",
+          id: "arrow-" + n++,
+          tag: "arrow",
+          within: "body",
         },
         options
       );
@@ -54,45 +59,48 @@
   var connect = function (options) {
     var end1 = $(options.from);
     var end2 = $(options.to);
+    var tag = options.tag;
     var within = $(options.within);
 
     // Remove unnecessary options
     delete options.from;
     delete options.to;
+    delete options.tag;
     delete options.within;
 
-    within.each(function () {
-      var container = $("#svg-arrows");
+    $(":root").each(function () {
+      var container = within;
       var done = new Array();
       end1.each(function () {
         var node = this;
         done.push(this);
         end2.not(done).each(function () {
           // Create an arrow between two elements
-          createArrow(container, [node, this], options);
+          createArrow(container, [node, this], tag, options);
         });
       });
     });
   };
 
   /**
-   * createArrow(container, nodes, options)
+   * createArrow(container, nodes, tag, options)
    * Creates an arrow element between two nodes within a container.
    * @param {Element} container - The container element to append the arrow to.
    * @param {Element[]} nodes - An array of two node elements to connect.
+   * @param {string} options - Element defined tag.
    * @param {object} options - Additional options for the arrow element.
    */
-  var createArrow = function (container, nodes, options) {
+  var createArrow = function (container, nodes, tag, options) {
     // Create the arrow canvas element and append to it to the container
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" id="${options.id}-svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>`;
-    const arrow = $("<arrow>", options).html(svgString);
+    const arrow = $("<"+ tag + ">", options).html(svgString);
     container.append(arrow);
 
     // Create arrow's associated data
     var data = {
       id: options.id,
-      name: options.name,
       class: options.class,
+      name: options.name,
       node_from: $(nodes[0]),
       node_to: $(nodes[1]),
       nodes_dom: nodes
