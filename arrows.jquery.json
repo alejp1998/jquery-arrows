@@ -1,7 +1,7 @@
 {
     "name": "arrows",
     "title": "jQuery Arrows",
-    "version": "1.0.0",
+    "version": "0.0.2",
     "description": "Add stylable arrows connecting page elements. Handy for visualizing relations and graph edges.",
     "keywords": ["arrow", "connect", "edge", "graph", "line", "style"],
     "author": {
@@ -10,12 +10,12 @@
     "licenses": [
       {
         "type": "MIT",
-        "url": "https://musclesoft.github.com/jquery-arrows/LICENSE"
+        "url": "https://alejp1998.github.com/jquery-arrows/LICENSE"
       }
     ],
-    "bugs": "https://github.com/musclesoft/jquery-arrows/issues",
-    "demo": "https://musclesoft.github.com/jquery-arrows/",
-    "docs": "https://github.com/musclesoft/jquery-arrows/wiki",
+    "bugs": "https://github.com/alejp1998/jquery-arrows/issues",
+    "demo": "https://alejp1998.github.com/jquery-arrows/",
+    "docs": "https://github.com/alejp1998/jquery-arrows/wiki",
     "homepage": "https://github.com/alejp1998/jquery-arrows",
     "dependencies": {
       "jquery": ">=1.9"
