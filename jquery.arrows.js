@@ -92,7 +92,7 @@
    */
   var createArrow = function (container, nodes, tag, options) {
     // Create the arrow canvas element and append to it to the container
-    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" id="${options.id}-svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>`;
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" id="${options.id}-svg" class="svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>`;
     const arrow = $("<"+ tag + ">", options).html(svgString);
     container.append(arrow);
 
@@ -244,7 +244,7 @@
     var prevText = document.getElementById(id + "-svg" + "-text");
     if (prevText) prevText.remove();
     // Add new name text to svg
-    svg.innerHTML += `<text id="${id}-svg-text" class="svg-text" dy="10px" text-anchor="middle" font-size="14px">
+    svg.innerHTML += `<text id="${id}-svg-text" class="svg-text" dy="15px" text-anchor="middle" font-size="16px">
       <textPath href="#${id}-svg-line" startOffset="50%">${name}</textPath>
     </text>`;
   };
@@ -285,7 +285,7 @@
 
     // Modify size of svg canvas depending on location of from and to rectangles
     // Increase width and height to prevent singularities when from and to rectangles are aligned in one of the axis
-    const PADDING = 10;
+    const PADDING = 20;
     const minX = Math.min(from_cx, to_cx) - PADDING;
     const minY = Math.min(from_cy, to_cy) - PADDING;
     const width = Math.abs(from_cx - to_cx) + PADDING * 2;

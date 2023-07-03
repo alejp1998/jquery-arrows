@@ -7,7 +7,7 @@ Please see the [Wiki](https://github.com/alejp1998/jquery-arrows/wiki) for instr
 
 ## Contributing
 
-You're welcome to add to the [Wiki](https://github.com/musclesoft/jquery-arrows/wiki),
+You're welcome to add to the [Wiki](https://github.com/alejp1998/jquery-arrows/wiki),
 fork and send pull requests.
 
 ## License
