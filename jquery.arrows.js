@@ -27,7 +27,6 @@
           from: this,
           to: this,
           id: "arrow-" + n++,
-          tag: "arrow",
           within: "body",
         },
         options
@@ -59,13 +58,11 @@
   var connect = function (options) {
     var end1 = $(options.from);
     var end2 = $(options.to);
-    var tag = options.tag;
     var within = $(options.within);
 
     // Remove unnecessary options
     delete options.from;
     delete options.to;
-    delete options.tag;
     delete options.within;
 
     $(":root").each(function () {
@@ -76,24 +73,23 @@
         done.push(this);
         end2.not(done).each(function () {
           // Create an arrow between two elements
-          createArrow(container, [node, this], tag, options);
+          createArrow(container, [node, this], options);
         });
       });
     });
   };
 
   /**
-   * createArrow(container, nodes, tag, options)
+   * createArrow(container, nodes, options)
    * Creates an arrow element between two nodes within a container.
    * @param {Element} container - The container element to append the arrow to.
    * @param {Element[]} nodes - An array of two node elements to connect.
-   * @param {string} options - Element defined tag.
    * @param {object} options - Additional options for the arrow element.
    */
-  var createArrow = function (container, nodes, tag, options) {
+  var createArrow = function (container, nodes, options) {
     // Create the arrow canvas element and append to it to the container
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" id="${options.id}-svg" class="svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>`;
-    const arrow = $("<"+ tag + ">", options).html(svgString);
+    const arrow = $("<arrow>", options).html(svgString);
     container.append(arrow);
 
     // Create arrow's associated data

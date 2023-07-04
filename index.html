@@ -15,7 +15,7 @@
             $().arrows({
                 within: '#svg-arrows', // Optional (container that will hold the created arrows - set to "body" if not specified)
                 id: 'arrow-1-2', // Optional (for unique element identification - set to "arrow-n" if not specified) 
-                class: 'arrow-class-1', // Optional (for arrow class identification and styling)
+                class: 'blue-dashed-edge', // Optional (for arrow class identification and styling)
                 name: 'i am arrow-1-2', // Optional (no text is shown otherwise)
                 from: '#node-1', // MANDATORY - Any jQuery selector (allowing to choose multiple source elements at once).
                 to: '#node-2' // MANDATORY - Any jQuery selector (allowing to choose multiple destination elements at once).
@@ -24,7 +24,7 @@
             $().arrows({
                 within: '#svg-arrows',
                 id: 'arrow-2-3',
-                class: 'arrow-class-2',
+                class: 'purple-edge',
                 name: 'i am arrow-2-3',
                 from: '#node-2',
                 to: '#node-3'
@@ -33,7 +33,7 @@
             $().arrows({
                 within: '#svg-arrows',
                 id: 'arrow-3-4',
-                class: 'arrow-class-3',
+                class: 'blue-dashed-edge',
                 name: 'i am arrow-3-4',
                 from: '#node-3',
                 to: '#node-4'
@@ -42,7 +42,7 @@
             $().arrows({
                 within: '#svg-arrows',
                 id: 'arrow-4-1',
-                class: 'arrow-class-4',
+                class: 'orange-edge',
                 name: 'i am arrow-4-1',
                 from: '#node-4',
                 to: '#node-1'
@@ -51,7 +51,7 @@
             $().arrows({
                 within: '#svg-arrows',
                 id: 'arrow-1-3',
-                class: 'arrow-class-1',
+                class: 'orange-edge',
                 name: 'i am arrow-1-3',
                 from: '#node-1',
                 to: '#node-3'
@@ -60,13 +60,31 @@
             $().arrows({
                 within: '#svg-arrows',
                 id: 'arrow-4-2',
-                class: 'arrow-class-2',
+                class: 'purple-edge',
                 name: 'i am arrow-4-2',
                 from: '#node-4',
                 to: '#node-2'
             });
 
-            var arrows = $("arrow, inner");
+            $().arrows({
+                within: '#svg-arrows',
+                id: 'arrow-5-2',
+                class: 'orange-edge',
+                name: 'i am arrow-5-2',
+                from: '#node-5',
+                to: '#node-2'
+            });
+
+            $().arrows({
+                within: '#svg-arrows',
+                id: 'arrow-3-5',
+                class: 'blue-dashed-edge',
+                name: 'i am arrow-3-5',
+                from: '#node-3',
+                to: '#node-5'
+            });
+
+            var arrows = $("arrow");
             setInterval(function () {
                 arrows.arrows("update");
             }, 100);
@@ -84,39 +102,45 @@
             border-radius: 10px;
         }
 
+        .green-node {
+            border: 2px solid rgba(19, 230, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        .blue-node {
+            border: 2px solid rgba(0, 81, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .red-node {
+            border: 2px solid rgba(204, 1, 1, 0.8);
+            border-radius: 10px;
+        }
+
         /* Edit arrow styles by class */
-        .arrow-class-1 .svg {
+        .blue-dashed-edge .svg {
             fill: blue;
         }
 
-        .arrow-class-1 .svg-line {
+        .blue-dashed-edge .svg-line {
             stroke: blue;
-            stroke-dasharray: 4;
+            stroke-dasharray: 8;
         }
 
-        .arrow-class-2 .svg {
-            fill: black;
+        .purple-edge .svg {
+            fill: purple;
         }
 
-        .arrow-class-2 .svg-line {
-            stroke: black;
+        .purple-edge .svg-line {
+            stroke: purple;
         }
 
-        .arrow-class-3 .svg {
+        .orange-edge .svg {
             fill: orange;
         }
 
-        .arrow-class-3 .svg-line {
+        .orange-edge .svg-line {
             stroke: orange;
-        }
-
-        .arrow-class-4 .svg {
-            fill: red;
-        }
-
-        .arrow-class-4 .svg-line {
-            stroke: red;
-            stroke-dasharray: 8;
         }
 
         /* Edit width of arrow line and text */
@@ -126,6 +150,7 @@
         }
 
         .svg-line {
+            stroke: black;
             stroke-width: 2;
         }
     </style>
@@ -134,20 +159,65 @@
 <body>
     <h2 class="title is-3" style="margin: 0.5em;">jQuery Arrows Example</h2>
     <h3 class="subtitle is-4" style="margin: 0.5em;">Nodes can be dragged to play with arrows update.</h3>
-    <h3 class="subtitle is-4" style="margin: 0.5em;">Arrows are defined in a script stating what HTML elements they connect and their properties.</h3>
-    <h3 class="subtitle is-4" style="margin: 0.5em;">Arrows can be styled by class or id using CSS as in this example.</h3>
+    <h3 class="subtitle is-4" style="margin: 0.5em;">Arrows are defined in a script stating what HTML elements they
+        connect and their properties.</h3>
+    <h3 class="subtitle is-4" style="margin: 0.5em;">Arrows can be styled by class or id using CSS as in this example.
+    </h3>
 
-    <div id="node-1" class="node" style="top:30%; left:10%;">
-        <h3 class="subtitle is-2">Node 1</h3>
-    </div>
-    <div id="node-2" class="node" style="top:30%; left:75%;">
-        <h3 class="subtitle is-2">Node 2</h3>
-    </div>
-    <div id="node-3" class="node" style="top:70%; left:75%;">
-        <h3 class="subtitle is-2">Node 3</h3>
-    </div>
-    <div id="node-4" class="node" style="top:70%; left:10%;">
-        <h3 class="subtitle is-2">Node 4</h3>
+    <div id="graph-viewer">
+
+        <div id="node-1" class="node green-node ui-draggable ui-draggable-handle"
+            style="left: 318.516px; top: 273.25px;">
+            <div class="media">
+                <div class="media-content">
+                    <h5 class="title is-5">node-1</h5>
+                    <h6 class="subtitle is-6">i am node 1</h6>
+                    <!-- <span class="tag is-link is-small">green-node</span> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="node-2" class="node blue-node ui-draggable ui-draggable-handle"
+            style="left: 660.766px; top: 332.969px;">
+            <div class="media">
+                <div class="media-content">
+                    <h5 class="title is-5">node-2</h5>
+                    <h6 class="subtitle is-6">i am node 2</h6>
+                    <!-- <span class="tag is-link is-small">blue-node</span> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="node-3" class="node green-node ui-draggable ui-draggable-handle"
+            style="left: 263.625px; top: 596.375px;">
+            <div class="media">
+                <div class="media-content">
+                    <h5 class="title is-5">node-3</h5>
+                    <h6 class="subtitle is-6">i am node 3</h6>
+                    <!-- <span class="tag is-link is-small">green-node</span> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="node-4" class="node blue-node ui-draggable ui-draggable-handle" style="left: 83.25px; top: 385.141px;">
+            <div class="media">
+                <div class="media-content">
+                    <h5 class="title is-5">node-4</h5>
+                    <h6 class="subtitle is-6">i am node 4</h6>
+                    <!-- <span class="tag is-link is-small">blue-node</span> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="node-5" class="node red-node ui-draggable ui-draggable-handle" style="left: 718px; top: 552px;">
+            <div class="media">
+                <div class="media-content">
+                    <h5 class="title is-5">node-5</h5>
+                    <h6 class="subtitle is-6">i am node 5</h6>
+                    <!-- <span class="tag is-link is-small">red-node</span> -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="svg-arrows"></div>
